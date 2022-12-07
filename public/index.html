@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Discount Alarm</title>
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- <i class="fa-solid fa-square-right"></i> -->
+    <script src="https://kit.fontawesome.com/50f5e1f7f2.js" crossorigin="anonymous"></script>
+</head>
+<style>
+  body {
+    /* Dark mode  */
+    border-color: #736b5e;
+    color: #e8e6e3;
+    background-color: #181a1b;
+/* filter: blur(3px); */
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    position: absolute;
+    left: 60%;
+    font-size: 20px;
+}
+
+li {
+    margin-left: 40px;
+    justify-content: space-between;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: aliceblue;
+    cursor: pointer;
+}
+  h3{
+    text-align: center;
+  }
+    input[type=text] , input[type = number] , input[type=url] , input[type=email] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      border-color: rgb(62, 68, 70);
+      background-color: #3b3b3b;
+    }
+    
+    input[type=submit] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    .inputs  {
+     
+      background-color: rgb(31, 34, 35);
+      border-radius: 5px;
+    /* background-color: #f2f2f2; */
+    padding: 20px;
+    margin: 0 auto;
+    width: 400px;
+    }
+    .item {
+      text-align: center;
+      background-color: rgb(31, 34, 35);
+      border-radius: 5px;
+    /* background-color: #f2f2f2; */
+    padding: 20px;
+    /* margin: 0 auto; */
+    width: 300px;
+    /* height: 200px; */
+    margin-right: 10px;
+    }
+   .item>a{
+   
+     color: inherit; 
+  text-decoration: inherit; 
+     
+   }
+   .item>label{
+     padding-bottom: 20px;
+     margin-bottom: 20px;
+   }
+  .item>.check{
+   
+    margin: 0 auto;
+    padding-top: 10px;
+    width: 50%;
+  }
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+  }
+   .check >.remove {
+     background-color: #a04545;
+     /* color: #a04545; */
+   }
+   .check > .remove:hover {
+      background-color: #7d3535;
+    }
+    .delete { 
+      display: none;
+    }
+    .item {
+      margin-top: 10px;
+    }
+    .noDiscount {
+      color:rgb(203, 132, 132);
+    }
+    .discount{
+      width: 100%;
+      color: #45a049;
+    }
+    input[type=checkbox]{
+     width: 20px;
+     height: 15px;
+     margin-left: 20px;
+    }
+    .mailing {
+      background-color: rgb(31, 34, 35);
+      border-radius: 5px;
+    display: none;
+    padding: 20px;
+   border: 5px solid black;
+    margin: 0 auto;
+    width: 400px;
+    align-items: center;
+    position: absolute;
+      top: 30%;
+      left: 35%;
+      text-align: center;
+      /* filter: blur(3px); */
+    }
+    .email{
+     
+      background-color: rgb(31, 34, 35);
+      border-radius: 5px;
+      color: inherit; 
+  text-decoration: inherit;   
+    width: 40%;
+    }
+    .blur {
+      filter: blur(3px);
+      cursor: not-allowed;
+    }
+    </style>
+    <body>
+    
+    <h3>Amazon Discount Alarm</h3>
+    
+    <div class="inputs">
+      
+        <label for="fname">Product Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Product name.." class="name">
+    
+        <label for="lname">URL</label>
+        <input type="url" id="lname" name="lastname" placeholder="URL on Amazon.." class="url">
+
+        <label for="price">Wanted price</label>
+        <input type="number" id="price" name="price" placeholder="Enter wanted price" class="price" >
+
+    <label for="">Send email once discount reach wanted price</label>
+        <input type="checkbox" size="20px"   class="emailCheck">
+      
+        <input type="submit" value="Submit" class="submit">
+     
+      </div>
+      <!-- <div class="mailing">
+        <label for="email">Email :</label>
+        <input type="email" class="email" name="email" value="Enter your Email">
+        <input type="submit" class="emailSubmit" value="Submit">
+      </div> -->
+ 
+    <div class="items">
+    
+    </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <script>
+      var counter = 0;
+     function correctCounter(){
+      // var items = {...localStorage};
+      //   const values = Object.values(items);
+      //   const keys = Object.keys(items);
+        // if (keys.length ==1);
+        // correct = keys[0];
+        // else {}
+       var correct =0;
+       const items = document.querySelectorAll('.item');
+       items.forEach(item=>{
+        const style = item.style.display ;
+        if (style == 'none');
+        else correct++;
+      })
+return correct;
+     }
+     var called ;
+     function removeCorrect(){
+       var counter =0;
+       const items = document.querySelectorAll('.item');
+       items.forEach(item=>{
+         if (item.style.display =='none');
+         else counter++;
+       })
+       called = items.length;
+       console.log(called)
+       called--;
+       counter--;
+       return (counter)
+     }
+     function checkEmail(){
+       const check = document.querySelector('.emailCheck');
+      return check.checked;
+     }
+     function mailing(){
+       const check = checkEmail();
+       const mailingDiv= document.querySelector('.mailing');
+       const items = document.querySelector('.items');
+       const inputs = document.querySelector('.inputs');
+
+       if (check == 1){
+         mailingDiv.style.display = 'block';
+         items.className +=' blur';
+         inputs.className +=' blur';
+
+       }
+       
+
+     }
+      function remove(num){
+        num = removeCorrect();
+        const items = document.getElementsByClassName(`item ${num}`);
+        for (i=0;i<items.length ; i++){
+          items[i].style.display = 'none';
+        }
+        localStorage.removeItem(`item ${num}`);
+        // const stCorrect =storageCorrect();
+        // if (stCorrect)
+        // localStorage.clear();
+        
+
+      }
+
+
+      function addToStorage(num , value){
+        localStorage.setItem(`item ${num}` , value);
+      }
+      function loadingItems(){
+        var items = {...localStorage};
+        const values = Object.values(items);
+        const keys = Object.keys(items)
+        var names = [];
+        var urls = [];
+        var prices = [];
+        var counters = [];
+        for (i=0;i<values.length ; i++){
+          const item = values[i].split(',');
+          names.push(item[0]);
+          urls.push(item[1]);
+          prices.push(item[2]);
+          // const divs = document.querySelectorAll('.item').length;
+          counters.push(i);
+
+        }
+        
+        return{
+          names,urls,prices,counters
+        }
+      }
+      document.body.onload = ()=>{
+        // storageCorrect()
+        const items = loadingItems();
+        for (i=0;i<items.counters.length ; i++){
+          itemBuilder(items.names[i] , items.urls[i] , items.prices[i] , items.counters[i]);
+          console.log(items.counters[i])
+        }
+       
+      }
+      function storageCorrect (){
+        const items = document.querySelectorAll('.item');
+        
+      items.forEach(item=>{
+        console.log(item.className)
+        
+      })
+
+      }
+      
+      async function getData (num) {
+        var discountResult = document.getElementById(`discountResult ${num}`)
+        discountResult.innerHTML = 'Loading..';
+        const name = document.getElementsByClassName(`name ${num}`)[0].innerHTML;
+        const url = document.getElementsByClassName(`url ${num}`)[0].href;
+        const wantedPrice = document.getElementsByClassName(`price ${num}`)[0].innerHTML;
+        
+        console.log(name , url , wantedPrice);
+       
+        const data = {name , url , wantedPrice} ;
+
+        const options = {
+          method : 'POST',
+          headers : {
+            'Content-Type' : 'application/json'
+          },
+          body : JSON.stringify(data)
+        }
+        const request = await fetch('/api' , options);
+        const res = await request.json();
+        console.log(res) ;
+        discountResult.innerHTML = res.value;
+        if (res.discount == 0)
+        discountResult.className = 'noDiscount';
+        else discountResult.className = 'discount';
+      }
+      function itemBuilder (name , url , price , number){
+      const items = document.querySelector('.items');
+
+        items.innerHTML +=`<div class="item ${number}">
+        <label for="name" class="name ${number}">${name}</label>
+        <br>
+        <br>
+        <a href="${url}" target="_blank" class="url ${number}">
+         Show product on Amazon <i class="far fa-arrow-alt-circle-right"></i>
+        </a>
+        <p>Wanted price is :<h4 class="price ${number}"> ${price} </h4></p>
+        <p class="discountResult" id="discountResult ${number}"></p>
+        <div class="check">
+          
+          <input type="submit" value="check for discounts" class="scrapCheck" onclick="getData(${number})">
+          <input type="submit" value="Remove" class="remove ${number}" onclick ="remove(${number})">
+          
+        </div>
+      </div>`
+
+      }
+
+      const submit = document.querySelector('.submit');
+
+      submit.addEventListener('click' , async()=>{
+        
+        
+        // mailing()
+        var num = document.querySelectorAll('.item').length;
+
+        const name = document.querySelector('.name').value;
+        const url = document.querySelector('.url').value ;
+        const price = document.querySelector('.price').value; 
+        
+        const data = {
+          name , url , price
+        };
+        const values = [name ,url , price]
+        
+        const items = document.querySelector('.items');
+        const allItems = {...localStorage};
+        var newCounter = (Object.values(allItems).length);
+       
+        counter = correctCounter();
+        addToStorage(counter , values);
+      itemBuilder(name , url, price , counter);
+     
+      })
+      
+    </script>
+    
+    </body>
+    </html>
